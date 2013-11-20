@@ -1,7 +1,7 @@
 /* Taken from Blink example with some minor changes, to be used
    on the car alarm project
    */
-int stateofLock = 8;
+int stateofLock = 0;
 int led = 10;
 int val = 0;
 
