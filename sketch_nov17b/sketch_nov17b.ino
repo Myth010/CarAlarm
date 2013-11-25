@@ -1,19 +1,21 @@
 /* Taken from Blink example with some minor changes, to be used
    on the car alarm project
    */
-int stateofLock = 0;
+int lockpin = 0;      // Interrupt 0 is digital pin 3
+volatile int stateoflock = LOW;
 int led = 10;
-int val = 0;
 
-void setup() 
-{
-  pinMode(stateofLock, INPUT);
+void setup() {
   pinMode(led, OUTPUT);
+  attachInterrupt(lockpin, stateChange, RISING);
 }
 void loop() {
-  val =digitalRead(stateofLock);
-  digitalWrite(led, val);
-  delay(1000);
-  digitalWrite(led, LOW);
-  delay(1000);
+  //Simulation
+  for (int i = 0; i < 100; i++) {
+    delay(10);
+  }
+}
+void stateChange() {
+  stateoflock = !stateoflock;
+  digitalWrite(led, stateoflock);
 }
